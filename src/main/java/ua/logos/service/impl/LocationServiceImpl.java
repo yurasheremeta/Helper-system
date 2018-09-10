@@ -30,17 +30,18 @@ public class LocationServiceImpl implements LocationService {
 	}
 	@Override
 	public List<LocationDTO> findAllLocations() {
-		// TODO Auto-generated method stub
-		return null;
+		List<LocationEntity> entity = locationRepository.findAll();
+		List<LocationDTO> dto = modelMapper.mapAll(entity, LocationDTO.class);
+		return dto;
 	}
 	@Override
 	public void updateLocation(LocationDTO dto) {
-		// TODO Auto-generated method stub
+		locationRepository.save(modelMapper.map(dto, LocationEntity.class));
 		
 	}
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+	locationRepository.deleteById(id);
 		
 	}
 	

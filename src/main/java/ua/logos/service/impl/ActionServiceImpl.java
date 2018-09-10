@@ -41,7 +41,7 @@ public class ActionServiceImpl implements ActionService{
 
 	@Override
 	public void updateAction(ActionDTO dto) {
-		// TODO Auto-generated method stub
+		actionRepository.save(modelMapper.map(dto, ActionEntity.class));
 		
 	}
 

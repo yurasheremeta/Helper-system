@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+
 @MappedSuperclass
 public class BaseEntity {
 	

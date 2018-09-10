@@ -3,6 +3,7 @@ package ua.logos.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListenerMethodProcessor;
 import org.springframework.stereotype.Service;
 
 import ua.logos.domain.EventsDTO;
@@ -36,7 +37,7 @@ public class EventsServiceImpl implements EventsService {
 	}
 	@Override
 	public void updateEvent(EventsDTO dto) {
-		// TODO Auto-generated method stub
+		eventsRepository.save(modelMapper.map(dto, EventsEntity.class));
 		
 	}
 	@Override

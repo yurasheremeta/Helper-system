@@ -37,7 +37,7 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 	@Override
 	public void updpateCategory(CategoryDTO dto) {
-		// TODO Auto-generated method stub
+		categoryRepository.save(modelMapper.map(dto , CategoryEntity.class));
 		
 	}
 	@Override
