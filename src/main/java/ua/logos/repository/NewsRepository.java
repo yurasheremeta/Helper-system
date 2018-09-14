@@ -7,5 +7,7 @@ import ua.logos.entity.NewsEntity;
 
 @Repository
 public interface NewsRepository extends JpaRepository<NewsEntity, Long>{
+	
+	boolean existsByNewsId(String newsId);
 
 }

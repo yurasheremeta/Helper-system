@@ -1,6 +1,11 @@
 package ua.logos.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -19,5 +24,7 @@ public class ActionEntity extends BaseEntity {
 	private String actionName;
 	
 	private String actionDescription;
-
+	
+	@OneToMany(mappedBy = "action")
+	private List<EventsEntity> events;
 }

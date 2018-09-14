@@ -1,6 +1,9 @@
 package ua.logos.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -13,8 +16,11 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "category")
-public class CategoryEntity {
+public class CategoryEntity extends BaseEntity {
 	
 	private String name;
+	
+//	@OneToMany(mappedBy = "category")
+//	private List<NewsEntity> news;
 
 }

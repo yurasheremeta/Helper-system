@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ua.logos.domain.EventsDTO;
+import ua.logos.entity.EventsEntity;
 import ua.logos.service.EventsService;
 
 @RestController
@@ -35,28 +36,38 @@ public class EventsController {
 	}
 
 	@GetMapping("/{eventId}")
-	public ResponseEntity<EventsDTO> findById(@PathVariable("eventId") Long id){
-		EventsDTO dto = eventsService.findById(id);
+	public ResponseEntity<EventsDTO> findById(@PathVariable("eventId") String eventId){
+		EventsDTO dto = eventsService.findById(eventId);
 		return new ResponseEntity<EventsDTO>(dto , HttpStatus.OK);	
 	}
 	@PutMapping("/update/{eventId}")
-	public ResponseEntity<Void> update(@PathVariable("eventId") Long id , @RequestBody EventsDTO dto){
-		EventsDTO dtoFromDb = eventsService.findById(id);
+	public ResponseEntity<Void> update(@PathVariable("eventId") String eventId , @RequestBody EventsDTO dto){
+		EventsDTO dtoFromDb = eventsService.findById(eventId);
 		if(dtoFromDb != null) {
-			dto.setId(id);
+			dto.setEventId(eventId);
 			eventsService.updateEvent(dto);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 	}
-	@DeleteMapping("/delete/{eventId}")
-	public ResponseEntity<EventsDTO> delete(@PathVariable("eventId") Long id){
-		EventsDTO dto= eventsService.findById(id);
-		if(dto != null) {
-			eventsService.delete(id);
-			return new ResponseEntity<EventsDTO>(dto , HttpStatus.OK);
+//	@DeleteMapping("/delete/{eventId}")
+//	public ResponseEntity<EventsDTO> delete(@PathVariable("eventId") Long id){
+//		EventsDTO dto= eventsService.findById(id);
+//		if(dto != null) {
+//			eventsService.delete(id);
+//			return new ResponseEntity<EventsDTO>(dto , HttpStatus.OK);
+//		}
+//		return new ResponseEntity<EventsDTO>(dto , HttpStatus.NOT_FOUND);
+//		
+//	}
+	@DeleteMapping("/deleteBy/{eventId}")
+	public ResponseEntity<EventsDTO> deleteBy(@PathVariable("eventId") String eventId){
+		EventsDTO dto = eventsService.findById(eventId);
+		if(dto == null) {
+			eventsService.deleteByEventId(eventId);
+			return new ResponseEntity<EventsDTO>(dto , HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<EventsDTO>(dto , HttpStatus.NOT_FOUND);
+		return new ResponseEntity<EventsDTO>(dto , HttpStatus.OK);
 		
 	}
 }

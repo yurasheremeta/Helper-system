@@ -7,19 +7,30 @@ import org.springframework.stereotype.Service;
 
 import ua.logos.domain.NewsDTO;
 import ua.logos.entity.NewsEntity;
+import ua.logos.exceptions.NewsServiceException;
 import ua.logos.repository.NewsRepository;
 import ua.logos.service.NewsService;
 import ua.logos.utils.ObjectMapperUtils;
+import ua.logos.utils.StringUtils;
+import static ua.logos.constants.ErrorMessages.*;
 @Service
 public class NewsServiceImpl implements NewsService {
 	@Autowired
 	private NewsRepository newsRepository;
 	@Autowired
 	private ObjectMapperUtils modelMapper;
+	@Autowired
+	private StringUtils stringUtils;
 	@Override
 	public void save(NewsDTO dto) {
+		String newsId = stringUtils.generate();
+		if(!newsRepository.existsByNewsId(newsId)) {
 		NewsEntity entity = modelMapper.map(dto, NewsEntity.class);
+		entity.setNewsId(newsId);
 		newsRepository.save(entity);
+		}else {
+			throw new NewsServiceException(RECORD_ALREDY_EXIST);
+		}
 		
 	}
 	@Override

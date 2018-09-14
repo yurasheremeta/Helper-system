@@ -40,6 +40,12 @@ public class UserServiceImpl implements UserService{
 	public void delete(Long id) {
 		userRepository.deleteById(id);
 	}
+	@Override
+	public UserDTO findByUsername(String username) {
+		UserEntity entity = userRepository.findByUsername(username);
+		UserDTO dto = modelMapper.map(entity, UserDTO.class);
+		return dto;
+	}
 	
 	
 

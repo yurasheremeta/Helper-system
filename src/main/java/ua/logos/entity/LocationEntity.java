@@ -1,6 +1,10 @@
 package ua.logos.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -24,5 +28,8 @@ public class LocationEntity extends BaseEntity {
 	private int streetCode;
 	
 	private int zipCode;
+	
+	@OneToMany(mappedBy = "location")
+	private List<EventsEntity> events;
 
 }

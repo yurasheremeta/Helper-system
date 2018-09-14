@@ -1,13 +1,20 @@
 package ua.logos.entity;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ua.logos.entity.enums.UserRole;
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,6 +32,14 @@ public class UserEntity extends BaseEntity {
 	private String password;
 	
 	private Date dayOfBirth;
+	
+	@OneToMany(mappedBy = "user")
+	private List<EventsEntity> events;
+	
+	@OneToMany(mappedBy = "user")
+	private List<NewsEntity> news;
+	 @Enumerated(EnumType.STRING)
+	  private UserRole role;
 	
 	
 

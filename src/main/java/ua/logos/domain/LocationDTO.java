@@ -1,8 +1,11 @@
 package ua.logos.domain;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ua.logos.entity.EventsEntity;
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,5 +23,7 @@ private String country;
 	private int streetCode;
 	
 	private int zipCode;
+	
+	private List<EventsEntity> events;
 
 }
