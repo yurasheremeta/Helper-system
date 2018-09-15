@@ -1,4 +1,4 @@
-package ua.logos.configJWT;
+package ua.logos.config.JWT;
 
 import java.util.Date;
 
@@ -18,7 +18,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import ua.logos.entity.enums.UserRole;
 import static ua.logos.constants.SecurityConstants.*;
-@Component
+@Component 
 public class JWTTokenProvider {
 	@Autowired
 	private UserDetailsService userDetailsService;

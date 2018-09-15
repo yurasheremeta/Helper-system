@@ -1,4 +1,4 @@
-package ua.logos.configJWT;
+package ua.logos.config.JWT;
 
 import java.io.IOException;
 

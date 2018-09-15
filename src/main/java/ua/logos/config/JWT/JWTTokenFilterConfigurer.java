@@ -1,4 +1,4 @@
-package ua.logos.configJWT;
+package ua.logos.config.JWT;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;

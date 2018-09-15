@@ -17,5 +17,7 @@ public interface UserService {
 	void delete(Long id);
 	
 	UserDTO findByUsername(String username);
+	
+	 String signin(String username, String password);
 
 }
