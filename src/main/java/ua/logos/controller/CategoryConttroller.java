@@ -57,4 +57,23 @@ public class CategoryConttroller {
 		}
 		return new ResponseEntity<CategoryDTO>(dto , HttpStatus.NOT_FOUND);
 	}
+//	@GetMapping("/findCulture")
+//	public ResponseEntity<List<CategoryDTO>> findCulture(){
+//		List<CategoryDTO> dto = categoryService.findCulture();
+//		return new ResponseEntity<List<CategoryDTO>>(dto , HttpStatus.OK);
+//		
+//	}
+//	@GetMapping("/findSport")
+//	public ResponseEntity<List<CategoryDTO>> findSport(){
+//		List<CategoryDTO> dto = categoryService.findSport();
+//		return new ResponseEntity<List<CategoryDTO>>(dto , HttpStatus.OK);
+//		
+//	}
+//	
+//	@GetMapping("/findPolitics")
+//	public ResponseEntity<List<CategoryDTO>> findPolitics(){
+//		List<CategoryDTO> dto = categoryService.findPolitics();
+//		return new ResponseEntity<List<CategoryDTO>>(dto , HttpStatus.OK);
+//		
+//	}
 }

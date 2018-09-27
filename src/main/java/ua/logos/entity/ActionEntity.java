@@ -25,6 +25,5 @@ public class ActionEntity extends BaseEntity {
 	
 	private String actionDescription;
 	
-	@OneToMany(mappedBy = "action")
-	private List<EventsEntity> events;
+	
 }

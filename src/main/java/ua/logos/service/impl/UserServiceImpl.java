@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ua.logos.config.JWT.JWTTokenProvider;
 import ua.logos.domain.UserDTO;
 import ua.logos.entity.UserEntity;
+import ua.logos.entity.enums.UserRole;
 import ua.logos.repository.UserRepository;
 import ua.logos.service.UserService;
 import ua.logos.utils.ObjectMapperUtils;
@@ -23,9 +25,13 @@ public class UserServiceImpl implements UserService{
 	private JWTTokenProvider jwtTokenProvider;
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	@Autowired
+	private PasswordEncoder encoder;
 	@Override
 	public void save(UserDTO dto) {
 		UserEntity entity = modelMapper.map(dto, UserEntity.class);
+		entity.setRole(UserRole.ROLE_USER);
+		entity.setPassword(encoder.encode(dto.getPassword()));
 		userRepository.save(entity);
 	}
 	@Override
@@ -56,9 +62,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public String signin(String username, String password) {
 		
-		 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username , password));
+		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username , password));
 
-	        return jwtTokenProvider.createToken(username , userRepository.findByUsername(username).getRole());
+        return jwtTokenProvider.createToken(username , userRepository.findByUsername(username).getRole());
 	}
 	
 	

@@ -22,46 +22,47 @@ import ua.logos.config.JWT.JWTTokenProvider;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
-	private UserDetailsService userDetailsService;
-	
-	@Autowired
-	private JWTTokenProvider jwtTokenProvider;
+    private UserDetailsService userDetailsService;
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(this.userDetailsService).passwordEncoder(passwordEncoder());
-	}
-
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Autowired
+    private JWTTokenProvider jwtTokenProvider;
 
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		super.configure(web);
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(this.userDetailsService).passwordEncoder(passwordEncoder());
 
-	@Bean
-	@Override
-	protected AuthenticationManager authenticationManager() throws Exception {
-		return super.authenticationManager();
-	}
+    }
 
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().cors();
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.antMatcher("/news/**").authorizeRequests().anyRequest().authenticated();
-		http.authorizeRequests()
-		.antMatchers("/user/**").hasAnyRole("ADMIN" , "USER");
-		http.apply(new JWTTokenFilterConfigurer(jwtTokenProvider));
-	}
-	
-	
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+       http.csrf().disable().cors();
+       http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+       http.antMatcher("/news/**").authorizeRequests().anyRequest().authenticated();
+       http.antMatcher("/blabla/**").authorizeRequests().anyRequest().authenticated();
+//       http.authorizeRequests()
+//       .antMatchers("/admin/**").hasRole("ADMIN");
+       http.authorizeRequests()
+       .antMatchers("/user/**").hasAnyRole("ADMIN" , "USER");
+       http.apply(new JWTTokenFilterConfigurer(jwtTokenProvider));
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        super.configure(web);
+    }
+    @Bean
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
 	
 	
 	

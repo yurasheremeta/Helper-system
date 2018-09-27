@@ -32,6 +32,7 @@ public class EventsServiceImpl implements EventsService {
 		String eventId = stringUtils.generate();
 		if(!eventsRepository.existsByEventId(eventId)) {
 		EventsEntity entity = modelMapper.map(dto, EventsEntity.class);
+		entity.setEventId(eventId);
 		eventsRepository.save(entity);
 		}else {
 			throw new EventsServiceException(RECORD_ALREDY_EXIST);
@@ -70,6 +71,37 @@ public class EventsServiceImpl implements EventsService {
 		}
 		return modelMapper.map(entity, EventsDTO.class);
 	}
+	@Override
+	public List<EventsDTO> findAccident() {
+		List<EventsEntity> entity = eventsRepository.findAccident();
+		List<EventsDTO> dto = modelMapper.mapAll(entity, EventsDTO.class);
+		return dto;
+	}
+	@Override
+	public List<EventsDTO> findMurder() {
+		List<EventsEntity> entity = eventsRepository.findMurder();
+		List<EventsDTO> dto = modelMapper.mapAll(entity, EventsDTO.class);
+		return dto;
+	}
+	@Override
+	public List<EventsDTO> findRobbery() {
+		List<EventsEntity> entity = eventsRepository.findRobbery();
+		List<EventsDTO> dto = modelMapper.mapAll(entity, EventsDTO.class);
+		return dto;
+	}
+	@Override
+	public List<EventsDTO> findFires() {
+		List<EventsEntity> entity = eventsRepository.findFires();
+		List<EventsDTO> dto = modelMapper.mapAll(entity, EventsDTO.class);
+		return dto;
+	}
+	@Override
+	public List<EventsDTO> findRape() {
+		List<EventsEntity> entity = eventsRepository.findRape();
+		List<EventsDTO> dto = modelMapper.mapAll(entity, EventsDTO.class);
+		return dto;
+	}
+	
 	
 	
 	

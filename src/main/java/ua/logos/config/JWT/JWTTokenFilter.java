@@ -13,26 +13,28 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
+import ua.logos.config.JWT.JWTTokenProvider;
+
 import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class JWTTokenFilter extends GenericFilterBean{
 	@Autowired
-	private JWTTokenProvider jwtTokenProvider;
+    private JWTTokenProvider jwtTokenProvider;
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		String token = jwtTokenProvider.resolvToken((HttpServletRequest) request);
-		try {
-			if(token == null && jwtTokenProvider.vaidateToken(token)) {
-				Authentication auth = jwtTokenProvider.getAuthentication(token);
-				SecurityContextHolder.getContext().setAuthentication(auth);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		chain.doFilter(request, response);
-	}
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        String token = jwtTokenProvider.resolvToken((HttpServletRequest)request);
+        try {
+            if (token == null && jwtTokenProvider.validateToken(token)) {
+                Authentication auth = jwtTokenProvider.getAuthentication(token);
+                SecurityContextHolder.getContext().setAuthentication(auth);
+
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        chain.doFilter(request , response);
+    }
 	
 	
 }

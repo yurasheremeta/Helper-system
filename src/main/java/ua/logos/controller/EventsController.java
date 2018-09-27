@@ -20,7 +20,7 @@ import ua.logos.entity.EventsEntity;
 import ua.logos.service.EventsService;
 
 @RestController
-@RequestMapping("events")
+@RequestMapping("/events")
 public class EventsController {
 	@Autowired
 	private EventsService eventsService;
@@ -68,6 +68,45 @@ public class EventsController {
 			return new ResponseEntity<EventsDTO>(dto , HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<EventsDTO>(dto , HttpStatus.OK);
+		
+	}
+	@GetMapping("/accident")
+	public ResponseEntity<List<EventsDTO>> findAccident(){
+		List<EventsDTO> dto = eventsService.findAccident();
+		
+		return new ResponseEntity<List<EventsDTO>>(dto , HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/murder")
+	public ResponseEntity<List<EventsDTO>> findMurder(){
+		List<EventsDTO> dto = eventsService.findMurder();
+		
+		return new ResponseEntity<List<EventsDTO>>(dto , HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/robbery")
+	public ResponseEntity<List<EventsDTO>> findRobbery(){
+		List<EventsDTO> dto = eventsService.findRobbery();
+		
+		return new ResponseEntity<List<EventsDTO>>(dto , HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/rape")
+	public ResponseEntity<List<EventsDTO>> findRape(){
+		List<EventsDTO> dto = eventsService.findRape();
+		
+		return new ResponseEntity<List<EventsDTO>>(dto , HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/fires")
+	public ResponseEntity<List<EventsDTO>> findA(){
+		List<EventsDTO> dto = eventsService.findFires();
+		
+		return new ResponseEntity<List<EventsDTO>>(dto , HttpStatus.OK);
 		
 	}
 }

@@ -24,6 +24,6 @@ private String country;
 	
 	private int zipCode;
 	
-	private List<EventsEntity> events;
+	
 
 }

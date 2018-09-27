@@ -29,7 +29,6 @@ public class LocationEntity extends BaseEntity {
 	
 	private int zipCode;
 	
-	@OneToMany(mappedBy = "location")
-	private List<EventsEntity> events;
+	
 
 }

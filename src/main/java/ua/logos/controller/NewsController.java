@@ -18,7 +18,7 @@ import ua.logos.domain.NewsDTO;
 import ua.logos.service.NewsService;
 
 @RestController
-@RequestMapping("news")
+@RequestMapping("/news")
 public class NewsController {
 	
 	@Autowired
@@ -56,5 +56,23 @@ public class NewsController {
 			return new ResponseEntity<NewsDTO>(dto , HttpStatus.OK);
 		}
 		return new ResponseEntity<NewsDTO>(dto , HttpStatus.NOT_FOUND);
+	}
+	@GetMapping("/sport")
+	public ResponseEntity<List<NewsDTO>> findSport(){
+		List<NewsDTO> dto = newsService.findSport();
+		
+		return new ResponseEntity<List<NewsDTO>>(dto , HttpStatus.OK);
+	}
+	@GetMapping("/politics")
+	public ResponseEntity<List<NewsDTO>> findPolitics(){
+		List<NewsDTO> dto = newsService.findPolitics();
+		
+		return new ResponseEntity<List<NewsDTO>>(dto , HttpStatus.OK);
+	}
+	@GetMapping("/culture")
+	public ResponseEntity<List<NewsDTO>> findCulture(){
+		List<NewsDTO> dto = newsService.findCulture();
+		
+		return new ResponseEntity<List<NewsDTO>>(dto , HttpStatus.OK);
 	}
 }

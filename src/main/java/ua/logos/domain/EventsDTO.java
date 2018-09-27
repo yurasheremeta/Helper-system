@@ -28,12 +28,12 @@ public class EventsDTO {
 	
 	private Date date;
 	
-	private LocationEntity location;
+	private LocationDTO location;
 	
 
-	private ActionEntity action;
+	private ActionDTO action;
 
 	
-	private UserEntity user;
+	private UserDTO user;
 
 }

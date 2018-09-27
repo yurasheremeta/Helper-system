@@ -19,7 +19,7 @@ import ua.logos.domain.ActionDTO;
 import ua.logos.service.ActionService;
 
 @RestController
-@RequestMapping("actions")
+@RequestMapping("/actions")
 public class ActionController {
 	
 	@Autowired

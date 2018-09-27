@@ -2,6 +2,8 @@ package ua.logos.service;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+
 import ua.logos.domain.EventsDTO;
 import ua.logos.entity.EventsEntity;
 
@@ -18,5 +20,16 @@ public interface EventsService {
 	void delete(Long id);
 	
 	EventsDTO deleteByEventId(String eventId);
+	
+	
+	List<EventsDTO> findAccident();
+
+	List<EventsDTO> findMurder();
+	
+	List<EventsDTO> findRobbery();
+	
+	List<EventsDTO> findFires();
+	
+	List<EventsDTO> findRape();
 
 }

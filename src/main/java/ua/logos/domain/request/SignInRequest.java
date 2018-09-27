@@ -1,6 +1,6 @@
 package ua.logos.domain.request;
 
-import org.aspectj.lang.annotation.DeclareAnnotation;
+
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

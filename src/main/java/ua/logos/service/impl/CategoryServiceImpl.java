@@ -45,6 +45,25 @@ public class CategoryServiceImpl implements CategoryService{
 		categoryRepository.deleteById(id);
 		
 	}
+//	@Override
+//	public List<CategoryDTO> findCulture() {
+//		List<CategoryEntity> entity = categoryRepository.findCulture();
+//		List<CategoryDTO> dto = modelMapper.mapAll(entity, CategoryDTO.class);
+//		return dto;
+//	}
+//	@Override
+//	public List<CategoryDTO> findSport() {
+//		List<CategoryEntity> entity = categoryRepository.findSport();
+//		List<CategoryDTO> dto = modelMapper.mapAll(entity, CategoryDTO.class);
+//		return dto;
+//	}
+//	@Override
+//	public List<CategoryDTO> findPolitics() {
+//		List<CategoryEntity> entity = categoryRepository.findPolitics();
+//		List<CategoryDTO> dto = modelMapper.mapAll(entity, CategoryDTO.class);
+//		return dto;
+//	}
+//	
 	
 	
 

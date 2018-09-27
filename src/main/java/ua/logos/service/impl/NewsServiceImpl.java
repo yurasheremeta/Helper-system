@@ -13,6 +13,7 @@ import ua.logos.service.NewsService;
 import ua.logos.utils.ObjectMapperUtils;
 import ua.logos.utils.StringUtils;
 import static ua.logos.constants.ErrorMessages.*;
+
 @Service
 public class NewsServiceImpl implements NewsService {
 	@Autowired
@@ -21,18 +22,20 @@ public class NewsServiceImpl implements NewsService {
 	private ObjectMapperUtils modelMapper;
 	@Autowired
 	private StringUtils stringUtils;
+	
 	@Override
 	public void save(NewsDTO dto) {
 		String newsId = stringUtils.generate();
 		if(!newsRepository.existsByNewsId(newsId)) {
 		NewsEntity entity = modelMapper.map(dto, NewsEntity.class);
 		entity.setNewsId(newsId);
+		System.out.println(dto.getCategory().getId());
 		newsRepository.save(entity);
-		}else {
+		} else {
 			throw new NewsServiceException(RECORD_ALREDY_EXIST);
-		}
-		
+		}	
 	}
+	
 	@Override
 	public List<NewsDTO> findAllNews() {
 		List<NewsEntity> entity = newsRepository.findAll();
@@ -54,6 +57,31 @@ public class NewsServiceImpl implements NewsService {
 		newsRepository.deleteById(id);
 		
 	}
+
+	@Override
+	public List<NewsDTO> findSport() {
+		List<NewsEntity> entity = newsRepository.findSport();
+		List<NewsDTO> dto = modelMapper.mapAll(entity, NewsDTO.class);
+		return dto;
+	}
+
+	@Override
+	public List<NewsDTO> findCulture() {
+		List<NewsEntity> entity = newsRepository.findCulture();
+		List<NewsDTO> dto = modelMapper.mapAll(entity, NewsDTO.class);
+		return dto;
+	}
+
+	@Override
+	public List<NewsDTO> findPolitics() {
+		List<NewsEntity> entity = newsRepository.findPolitics();
+		List<NewsDTO> dto = modelMapper.mapAll(entity, NewsDTO.class);
+		return dto;
+	}
+	
+	
+	
+	
 	
 	
 
